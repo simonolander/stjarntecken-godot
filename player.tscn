@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbbtsla3is6dv"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_hl4hc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hwkxl"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rlfa0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rilig"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_hl4hc")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_hwkxl")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CrossHair" type="CenterContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hairs" type="Control" parent="HUD/CrossHair"]
+layout_mode = 2
+
+[node name="Left" type="MeshInstance2D" parent="HUD/CrossHair/Hairs"]
+material = SubResource("CanvasItemMaterial_rlfa0")
+position = Vector2(-8, 0)
+scale = Vector2(10, 2)
+mesh = SubResource("BoxMesh_rilig")
+
+[node name="Right" type="MeshInstance2D" parent="HUD/CrossHair/Hairs"]
+material = SubResource("CanvasItemMaterial_rlfa0")
+position = Vector2(8, 0)
+scale = Vector2(10, 2)
+mesh = SubResource("BoxMesh_rilig")
+
+[node name="Up" type="MeshInstance2D" parent="HUD/CrossHair/Hairs"]
+material = SubResource("CanvasItemMaterial_rlfa0")
+position = Vector2(0, -8)
+scale = Vector2(2, 10)
+mesh = SubResource("BoxMesh_rilig")
+
+[node name="Down" type="MeshInstance2D" parent="HUD/CrossHair/Hairs"]
+material = SubResource("CanvasItemMaterial_rlfa0")
+position = Vector2(0, 8)
+scale = Vector2(2, 10)
+mesh = SubResource("BoxMesh_rilig")
